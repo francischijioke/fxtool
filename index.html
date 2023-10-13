@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Test FxTools Websocket</title>
+</head>
+<body>
+
+
+<div id="price-view">
+	
+</div>
+
+
+
+<script>
+const websocket =  new WebSocket('wss://fxtool.zinitytech.com');
+ const view = document.querySelector('#price-view')
+
+ websocket.onopen = () => {
+    console.log('user connected!');
+ }
+
+ websocket.onmessage = (message) => {
+    //console.log('Incoming Message!');
+    let html = "";
+    const data = message.data;
+    view.innerHTML = data;
+ }
+
+ websocket.onclose = () => {
+    console.log('User Disconnected!');
+ }
+
+ websocket.onerror = () => {
+    console.log('Connection failed!');
+ }
+
+
+</script>
+
+
+</body>
+</html>
